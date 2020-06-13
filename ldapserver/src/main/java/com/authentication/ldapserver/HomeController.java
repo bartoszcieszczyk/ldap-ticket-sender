@@ -8,7 +8,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String index() {
-        return "Welcome to the home page!"; // tutaj ma być przekierowanie na localhost 3000
+        return "Welcome to the home page!";
     }
 
 }
