@@ -10,12 +10,12 @@ services:
          - '8080:8080'
 
    ask-bugsender:
-      container_name: bug-sender
+      container_name: ticket-sender
       build:
-         context: ./bug-sender/bug-sender
+         context: ./ticket-sender/ticket-sender
          dockerfile: Dockerfile
       volumes:
-         - './bug-sender/bug-sender:/app'
+         - './ticket-sender/ticket-sender:/app'
          - '/app/node_modules'
       environment:
          - CHOKIDAR_USEPOOLING=true
@@ -25,7 +25,7 @@ services:
          - '3000:3000'
       
    ask-backend:
-      build: ./bug-sender/bug-sender/backend
+      build: ./ticket-sender/ticket-sender/backend
       networks:
          - bartinet
       ports:
