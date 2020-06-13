@@ -9,8 +9,7 @@ services:
       ports:
          - '8080:8080'
 
-   ask-bugsender:
-      container_name: ticket-sender
+   ask-ticket-sender:
       build:
          context: ./ticket-sender/ticket-sender
          dockerfile: Dockerfile
