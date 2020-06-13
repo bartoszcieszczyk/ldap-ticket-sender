@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+
+   ask-ldapserver:
+      build: ./ldapserver
+      networks:
+         - bartinet
+      ports:
+         - '8080:8080'
+
+   ask-bugsender:
+      container_name: bug-sender
+      build:
+         context: ./bug-sender/bug-sender
+         dockerfile: Dockerfile
+      volumes:
+         - './bug-sender/bug-sender:/app'
+         - '/app/node_modules'
+      environment:
+         - CHOKIDAR_USEPOOLING=true
+      networks:
+         - bartinet
+      ports:
+         - '3000:3000'
+      
+   ask-backend:
+      build: ./bug-sender/bug-sender/backend
+      networks:
+         - bartinet
+      ports:
+         - '5000:5000'
+
+networks:
+   bartinet:
+      driver: bridge
+
